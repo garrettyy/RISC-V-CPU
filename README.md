@@ -3,9 +3,10 @@
 ## Overview
 This project features a custom 32-bit RISC-V processor built from scratch in SystemVerilog.
 
-Currently, the CPU successfully runs a real-time bare-metal software application (a crawling Snake animation) on a Basys 3 FPGA.
+Currently, the CPU successfully runs a real-time bare-metal software application (a crawling Snake animation) on a Basys 3 FPGA. A video demonstration of this working on the physical hardware is included in the repository.
 
 ## Architecture & Implementation
+* **Reference Schematic vs. Custom Design**: The baseline architecture was inspired by standard academic single-cycle RISC-V datapaths (see the included schematic image). However, the implementation diverges from the basic reference to support a more robust instruction set. Most notably, it features an extended write-back multiplexer network before the Register File to explicitly handle storing `PC + 4` during `JAL` and `JALR` instructions, as well as bypassing the ALU to load immediate values directly during `LUI`.
 * **Single-Cycle Datapath**: The core currently features a single-cycle datapath including a control unit, a 32x32 register file, and an ALU.
 * **Optimized ALU**: The ALU features hardware resource sharing to minimize FPGA slice utilization (e.g., reusing the adder for subtraction and comparison operations).
 * **Advanced Instruction Support**: The datapath natively supports `AUIPC` (Position Independent Code) and `JALR` (Register Jumps) by routing the Program Counter (PC) directly through the ALU operands.
