@@ -1,0 +1,7 @@
+## Memory Initialization (ROM & RAM)
+The CPU's instruction memory and data memory are initialized using SystemVerilog's `$readmemh` system task. I have included two specific text files in this repository so the project can be simulated and synthesized out-of-the-box:
+* **`insmem_rv32.txt`**: Contains the compiled RISC-V machine code (hexadecimal instructions) loaded directly into `ROM.sv` to run the software application.
+* **`datamem_h.txt`**: Pre-loads the Data Memory (`data_mem.sv`) with required animation frames (7-segment display hexadecimal patterns) and the software delay limits.
+
+*(Note for Vivado: When generating a bitstream, ensure these `.txt` files are added to the project as Design Sources so the synthesizer correctly flashes the initial states into the FPGA's block RAM).*
+

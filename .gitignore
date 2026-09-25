@@ -1,0 +1,8 @@
+# CPU Simulation Executable
+*cpu_sim
+
+# Waveform Dump
+waveform.vcd
+
+# Test Scripts
+test_scripts/
