@@ -1,9 +1,16 @@
+
 # RISC-V 32-Bit CPU and FPGA System
 
 ## Overview
 This project features a custom 32-bit RISC-V processor built from scratch in SystemVerilog.
 
 Currently, the CPU successfully runs a real-time bare-metal software application (a crawling Snake animation) on a Basys 3 FPGA. A video demonstration of this working on the physical hardware is included in the repository.
+
+
+https://github.com/user-attachments/assets/b49799b7-60f1-4f75-a8e8-e7608a30277d
+
+
+<img width="3681" height="2591" alt="BF6F1D92-E367-4972-8367-19C32E7E3AA8_1_201_a" src="https://github.com/user-attachments/assets/ca3e8b9b-f755-42e1-81db-29e3e95c95c5" />
 
 ## Architecture & Implementation
 * **Reference Schematic vs. Custom Design**: The baseline architecture was inspired by standard academic single-cycle RISC-V datapaths (see the included schematic image). However, the implementation diverges from the basic reference to support a more robust instruction set. Most notably, it features an extended write-back multiplexer network before the Register File to explicitly handle storing `PC + 4` during `JAL` and `JALR` instructions, as well as bypassing the ALU to load immediate values directly during `LUI`.
