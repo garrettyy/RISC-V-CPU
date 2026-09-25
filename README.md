@@ -6,7 +6,10 @@ This project features a custom 32-bit RISC-V processor built from scratch in Sys
 
 Currently, the CPU successfully runs a real-time bare-metal software application (a crawling Snake animation) on a Basys 3 FPGA.
 
-<img width="1920" height="1080" alt="83581E0B-82C8-4EFF-9367-7C60C8C47E65_1_206_a" src="https://github.com/user-attachments/assets/09ddfd55-aabe-4168-8dfa-1972576bd87e" />
+
+https://github.com/user-attachments/assets/b49799b7-60f1-4f75-a8e8-e7608a30277d
+
+
 <img width="3681" height="2591" alt="BF6F1D92-E367-4972-8367-19C32E7E3AA8_1_201_a" src="https://github.com/user-attachments/assets/ca3e8b9b-f755-42e1-81db-29e3e95c95c5" />
 
 ## Architecture & Implementation
