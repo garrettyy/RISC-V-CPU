@@ -1,14 +1,14 @@
 module top(
-        input             FPGACLK,
-		  input             rst,
-		  output     [6:0]  LED,
-	     output reg [3:0]  AN
-    );
+  input logic FPGACLK,
+	input logic rst,
+  output logic [6:0] LED,
+  output logic [3:0] AN
+  );
 
 // Define internal signals
   wire CLK;                 // The output of the clock divider 10 MHz Clock
 
-// MIPS interface
+// RISCV interface
   wire [31:0] IOWriteData;
   wire  [3:0] IOAddr;
   wire        IOWriteEn;
@@ -42,7 +42,7 @@ clk_div ClockDiv (
 // Simple Way to determine the outputs, use a combinational process
 // Use the MSB of the Disp count so that each digit lights up for
 // 1.6ms  == 65536/4 * 100ns
-   always @ ( * )  // combinational process
+  always @ ( * )  // combinational process
 	   begin
 		   case (DispCount[15:14])
 			  2'b00:   begin AN = 4'b1110; DispDigit = DispReg[6:0];  end   // LSB
@@ -52,20 +52,19 @@ clk_div ClockDiv (
 			endcase  
 		end
 		
-// Instantiate the 7segment Display Driver
-// led_driver sevendriver ( .S(DispDigit), .D(LED) );  // Instantiate the driver
-   assign LED = ~DispDigit;
+  // Drive each LED segment by bit flipping because LED is active low
+  assign LED = ~DispDigit;
 	
 
-   // Tie off unused IO read data (no switches implemented)
-   assign IOReadData = 32'b0;
+  // Tie off unused IO read data (no switches implemented)
+  assign IOReadData = 32'b0;
 
 
 // Register to save the 28-bit Value
   always @ (posedge CLK, posedge rst)
-    if      (rst)     DispReg = 28'h0;          // Funny default value 
+    if      (rst)     DispReg = 28'h0;          // default value 
 	 else if (IOWriteEn)                              // Only when IOWrite 
-	           DispReg = IOWriteData[27:0];           // only the lower half
+	           DispReg <= IOWriteData[27:0];           // only the lower half
 	 
 
 // Instantiate the processor
